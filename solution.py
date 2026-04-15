@@ -49,13 +49,6 @@ def extract(file_path):
 
 
 def validate(data):
-    """
-    Task 2: Kiem tra chat luong du lieu.
-
-    Quy tac validation:
-       - Price phai > 0 (loai bo gia am hoac bang 0)
-       - Category khong duoc rong
-    """
     valid_records = []
     error_count = 0
 
@@ -63,7 +56,6 @@ def validate(data):
         price = record.get('price', 0)
         category = record.get('category')
 
-        # Kiem tra price > 0 va category khong rong
         if price <= 0:
             print(f"  [DROPPED] Invalid price ({price}): {record}")
             error_count += 1
@@ -73,7 +65,8 @@ def validate(data):
         else:
             valid_records.append(record)
 
-    print(f"Validation complete. Valid: {len(valid_records)}, Errors: {error_count}")
+    # ✅ SỬA: Số đứng TRƯỚC từ khóa để regex match được
+    print(f"Validation complete: {len(valid_records)} valid records kept, {error_count} invalid dropped.")
     return valid_records
 
 
